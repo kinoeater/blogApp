@@ -77,6 +77,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
                     var response =
                         await networkHandler.post("/user/register", data);
+                       
 
                     if (response.statusCode == 200 ||
                         response.statusCode == 201) {

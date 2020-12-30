@@ -1,5 +1,5 @@
 import 'package:blogApp/Screen/HomeScreen.dart';
-import 'package:blogApp/Screen/ProfileScreen.dart';
+import 'package:blogApp/Profile/ProfileScreen.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

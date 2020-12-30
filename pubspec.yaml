@@ -32,6 +32,7 @@ dependencies:
   http: ^0.12.1
   logger: ^0.9.4
   flutter_secure_storage: ^3.3.5
+  image_picker: ^0.6.7+17
 
 dev_dependencies:
   flutter_test:

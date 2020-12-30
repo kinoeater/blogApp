@@ -43,17 +43,6 @@ class _SignInPageState extends State<SignInPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               //crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Email ile giriş",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 2,
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
                 usernameFormField(),
                 SizedBox(
                   height: 15,
@@ -79,10 +68,10 @@ class _SignInPageState extends State<SignInPage> {
                         response.statusCode == 201) {
                       Map<String, dynamic> output = json.decode(response.body);
                       // print(output);
-                      print(output['token']);
-                      await storage.write(key: "Token", value: output['token']);
-                      var readResponse = await storage.read(key: "Token");
-                      print("Read response ///////////"+readResponse);
+                      print("token from server: "+output['token']);
+                      await storage.write(key: "token", value: output['token']);
+                      var readResponse = await storage.read(key: "token");
+                      print("Readed from storage, token is " + readResponse);
 
                       setState(() {
                         validate = true;
@@ -98,34 +87,13 @@ class _SignInPageState extends State<SignInPage> {
                       setState(() {
                         validate = false;
                         errorText = output;
-                        print("/////" + output);
+                        print(errorText);
                         circular = false;
                       });
                     }
-
-                    // setState(() {
-                    //   circular = true;
-                    // });
-
-                    // if (_globalkey.currentState.validate()) {
-                    //   // if valid send the data to REST data
-                    //   // networkHandler.get("");
-                    //   Map<String, String> data = {
-                    //     "username": _usernameController.text,
-                    //     "password": _passwordController.text,
-                    //   };
-                    //   print(data);
-                    //   await networkHandler.post("/user/login", data);
-                    //   setState(() {
-                    //     circular = false;
-                    //   });
-                    // } else {
-                    //   setState(() {
-                    //     circular = false;
-                    //   });
-                    // }
                   },
                   child: Container(
+                    margin: EdgeInsets.only(top: 5),
                     width: 120,
                     height: 50,
                     decoration: BoxDecoration(
@@ -147,7 +115,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                 ),
                 Divider(
-                  height: 30,
+                  height: 25,
                   thickness: 2,
                 ),
                 Row(
@@ -194,7 +162,7 @@ class _SignInPageState extends State<SignInPage> {
           child: TextFormField(
             controller: _usernameController,
             decoration: InputDecoration(
-              errorText: errorText.contains("kullanıcı") ? errorText : null,
+              errorText: errorText.contains("Kullanıcı") ? errorText : null,
               hintText: "Kullanıcı Adı",
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
